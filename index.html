@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+    <title>Contacto</title>
+</head>
+
+<body>
+    <h1>Contacto</h1>
+    <form action="#" method="post" id="contact_form" class="contact_form">
+        <label for="name"></label>
+        <input type="text" name="name" id="name" class="name" placeholder="Nombre">
+        <label for="email"></label>
+        <input type="email" name="email" id="email" class="email" placeholder="Correo Electrónico">
+        <label for="textarea"></label>
+        <textarea name="textarea" id="textarea" cols="30" rows="10" class="textarea"
+            placeholder="Escribe tu mensaje..."></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+    <script src="./scripts/smtp.js"></script>
+    <script>
+        const form = document.querySelector(".contact_form");
+        function sendMail(e) {
+            e.preventDefault();
+
+            const email = document.querySelector(".email");
+            const name = document.querySelector(".name");
+            const mensaje = document.querySelector(".textarea");
+
+
+            Email.send({
+                Host: "smtp.elasticemail.com",
+                Username: "dario.arganaraz.dev@gmail.com",
+                Password: "D8579299415E9369097339095BCDA0B6C8B5",
+                To: "dario.arganaraz.dev@gmail.com",
+                From: "dario.arganaraz.dev@gmail.com",
+                Subject: "Mensaje de Cliente",
+                Body: `    <h1>Información de cliente</h1>
+                <div style="padding: 10px; margin: auto; border: solid 1px;  border-radius: 12px; background-color:dimgray;">
+                    <p style="padding: 10px; margin: 10px; background-color: lightgray;">Nombre: ${name.value}</p>
+                    <p style="padding: 10px; margin: 10px; background-color: lightgray;">Correo: ${email.value}</p>
+                    <p style="padding: 10px; margin: 10px 10px 0px 10px; background-color: #555; text-align: center;">MENSAJE</p>
+                    <p style="padding: 15px; margin: 0px 10px 0px 10px; height: 200px; border-radius: 2px 2px 12px 12px; background-color:lightgray;">${mensaje.value}</p>
+                </div>`
+            }).then(
+                message => alert(message)
+
+            );
+        }
+        form.addEventListener('submit', sendMail);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;;
+}
+
+form input,
+form textarea,
+form button {
+    padding: 20px;
+    margin-bottom: 20px;
+    outline: none;
+    border: none;
+    background-color: #ddd;
+}
+
+form button:hover{
+    cursor: pointer;
+    background-color: gray;
+}  
+
+h1{
+    text-align: center;
+}
+
